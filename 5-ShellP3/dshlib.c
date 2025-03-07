@@ -55,11 +55,14 @@ int build_cmd_buff(char *cmd_line, cmd_buff_t *cmd_buff) {
     if (cmd_line == NULL || cmd_buff == NULL) {
         return ERR_CMD_ARGS_BAD;
     }
-    clear_cmd_buff(cmd_buff);
+    
     if (alloc_cmd_buff(cmd_buff) != OK) {
         fprintf(stderr, "Error allocating command buffer\n");
         return ERR_MEMORY;
     }
+
+    clear_cmd_buff(cmd_buff);
+    
     strncpy(cmd_buff->_cmd_buffer, cmd_line, SH_CMD_MAX - 1);
     cmd_buff->_cmd_buffer[SH_CMD_MAX - 1] = '\0'; // Ensure null-termination
 
